@@ -7,14 +7,8 @@ class Project
 	end
 
 	def self.all (condition)
-		returned_projects = DB.exec("SELECT * FROM projects ORDER BY #{condition}")
-		projects = []
-		returned_projects.each do |project|
-			name = project.fetch('name')
-			id = project.fetch('id').to_i
-			projects.push(Project.new({:name => name, :id => id}))
-		end
-		projects
+		results = DB.exec("SELECT * FROM projects #{condition};")
+		Project.to_object(results)
 	end
 
 	def save
@@ -26,11 +20,18 @@ class Project
 		name.==(another_project.name).&id.==(another_project.id)
 	end
 
-	def self.find (id)
-    Project.all('id').each do |project|
-      if project.id == id
-        return project
-      end
-    end
+	def self.find (key, value, condition)
+		results = DB.exec("SELECT * FROM projects WHERE #{key} #{value} ORDER BY #{condition}")
+		Project.to_object(results)
+  end
+
+  def self.to_object (results)
+  	projects = []
+		results.each do |project|
+			name = project.fetch('name')
+			id = project.fetch('id').to_i
+			projects.push(Project.new({:name => name, :id => id}))
+		end
+		projects
   end
 end
