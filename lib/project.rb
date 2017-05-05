@@ -20,8 +20,8 @@ class Project
 		name.==(another_project.name).&id.==(another_project.id)
 	end
 
-	def self.find (key, value, condition)
-		results = DB.exec("SELECT * FROM projects WHERE #{key} #{value} ORDER BY #{condition}")
+	def self.find_by_volunteer (condition)
+		results = DB.exec("SELECT project_id FROM volunteers WHERE #{condition}")
 		Project.to_object(results)
   end
 
@@ -40,7 +40,9 @@ class Project
   	DB.exec("UPDATE volunteers SET project_id = null WHERE project_id = #{self.id};")
   end
 
-  def update (name)
-  	DB.exec("UPDATE projects SET name = #{name} WHERE id = #{self.id};")
+  def update (values_array)
+  	values_array.each do |value|
+  		DB.exec("UPDATE projects SET #{value} WHERE id = #{self.id};")
+  	end
   end
 end

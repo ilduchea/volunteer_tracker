@@ -10,7 +10,7 @@ describe(Project) do
 
 	describe('.all') do
 		it('will return all projects in the database, empty at first') do
-			expect(Project.all('ORDER BY id')).to eq ([])
+			expect(Project.all('')).to eq ([])
 		end
 
 		it('will sort the projects alphabetically by name') do
@@ -38,7 +38,7 @@ describe(Project) do
 		it('will add a project to the database') do
 			project1 = Project.new({:name => 'Test Project'})
 			project1.save
-			expect(Project.all('ORDER BY id')).to eq ([project1])
+			expect(Project.all('')).to eq ([project1])
 		end
 	end	
 
@@ -49,7 +49,7 @@ describe(Project) do
       project2 = Project.new({:name => 'Another Project'})
       project2.save
       project1.delete
-      expect(Project.all('ORDER BY id')).to eq ([project2])
+      expect(Project.all('')).to eq ([project2])
     end
   end
 
@@ -57,7 +57,7 @@ describe(Project) do
   	it('will update the name of a project') do
   		project1 = Project.new({:name => 'Test Project'})
       project1.save
-      project1.update("'New Name'")
+      project1.update(["name = 'New Name'"])
       expect(Project.all('').first.name).to eq ('New Name')
     end
   end
