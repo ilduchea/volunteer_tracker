@@ -6,8 +6,8 @@ class Project
 		@id = attributes[:id]
 	end
 
-	def self.all 
-		returned_projects = DB.exec("SELECT * FROM projects")
+	def self.all (condition)
+		returned_projects = DB.exec("SELECT * FROM projects ORDER BY #{condition}")
 		projects = []
 		returned_projects.each do |project|
 			name = project.fetch('name')
@@ -27,7 +27,7 @@ class Project
 	end
 
 	def self.find (id)
-    Project.all.each do |project|
+    Project.all('id').each do |project|
       if project.id == id
         return project
       end
