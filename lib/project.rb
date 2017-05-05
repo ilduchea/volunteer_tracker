@@ -10,10 +10,19 @@ class Project
 		returned_projects = DB.exec("SELECT * FROM projects")
 		projects = []
 		returned_projects.each do |project|
-			name = data.fetch('name')
-			id = data.fetch('id')
+			name = project.fetch('name')
+			id = project.fetch('id').to_i
 			projects.push(Project.new({:name => name, :id => id}))
 		end
 		projects
+	end
+
+	def save
+		result = DB.exec("INSERT INTO projects (name) VALUES ('#{@name}') RETURNING id;")
+		@id = result.first['id'].to_i
+	end
+
+	def == (another_project)
+		name.==(another_project.name).&id.==(another_project.id)
 	end
 end

@@ -13,4 +13,12 @@ describe(Project) do
 			expect(Project.all).to eq ([])
 		end
 	end
+
+	describe('#save') do
+		it('will add a project to the database') do
+			project_test = Project.new({:name => 'Test Project'})
+			project_test.save
+			expect(Project.all).to eq ([project_test])
+		end
+	end
 end
