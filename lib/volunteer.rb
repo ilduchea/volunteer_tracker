@@ -48,4 +48,14 @@ class Volunteer
   		DB.exec("UPDATE volunteers SET #{value} WHERE id = #{self.id};")
   	end
   end
+
+  def add_hours (hours)
+  	new_hours = 0
+  	if @hours == nil
+  		new_hours = hours
+  	else
+  		new_hours = @hours.+(hours)
+  	end
+  	@hours = new_hours
+  end
 end

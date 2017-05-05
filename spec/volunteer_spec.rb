@@ -61,4 +61,12 @@ describe(Volunteer) do
       expect(Volunteer.all('').first.name).to eq ('New Name')
     end
   end
+
+  describe('#add_hours') do
+    it('will add hours to the volunteer') do
+      volunteer1 = Volunteer.new({:name => 'Test Volunteer'})
+      volunteer1.save
+      expect(volunteer1.add_hours(5)).to eq (5)
+    end
+  end
 end
