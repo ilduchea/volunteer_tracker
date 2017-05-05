@@ -1,3 +1,5 @@
+require 'descriptive_statistics'
+
 class Project
 	attr_accessor :name, :id
 
@@ -9,6 +11,16 @@ class Project
 	def self.all (condition)
 		results = DB.exec("SELECT * FROM projects #{condition};")
 		Project.to_object(results)
+	end
+
+	def hours 
+		hours_array = []
+		results = DB.exec("SELECT * FROM volunteers WHERE project_id = #{@id};")
+		results.each do |result|
+			hours = result.fetch('hours').to_i
+			hours_array.push(hours)
+		end
+		hours_array.sum
 	end
 
 	def save

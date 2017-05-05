@@ -34,3 +34,15 @@ post('/add_volunteer') do
 	volunteer.save
 	redirect('/')
 end
+
+get('/project/:id') do
+	project_id = params.fetch('id').to_i
+	@project = Project.all("WHERE id = #{project_id}").first
+	@volunteers = Volunteer.all("WHERE project_id = #{project_id}")
+	@hours = 
+	erb(:project)
+end
+
+get('/volunteer/:id') do
+	erb(:volunteer)
+end

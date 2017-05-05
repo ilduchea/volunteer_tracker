@@ -1,8 +1,9 @@
-require'rspec'
-require'pg'
-require "pry"
-require'project'
-require'volunteer'
+require 'rspec'
+require 'pg'
+require 'pry'
+require 'project'
+require 'volunteer'
+require 'descriptive_statistics'
 
 DB = PG.connect({:dbname => 'volunteer_tracker_test'})
 

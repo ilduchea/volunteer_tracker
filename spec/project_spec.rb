@@ -61,4 +61,24 @@ describe(Project) do
       expect(Project.all('').first.name).to eq ('New Name')
     end
   end
+
+  describe('#hours') do
+    it('will calculate the total number of hours spent on a project') do
+      project1 = Project.new({:name => 'Test Project'})
+      project1.save
+      volunteer1 = Volunteer.new({:name => 'Test Volunteer'})
+      volunteer1.save
+      volunteer1.update(["hours = 3", "project_id = #{project1.id}"])
+      volunteer2 = Volunteer.new({:name => 'Another Volunteer'})
+      volunteer2.save
+      volunteer2.update(["hours = 4", "project_id = #{project1.id}"])
+      volunteer3 = Volunteer.new({:name => 'Clean Parks'})
+      volunteer3.save
+      volunteer3.update(["hours = 5", "project_id = #{project1.id}"])
+      volunteer4 = Volunteer.new({:name => 'After School Program'})
+      volunteer4.save
+      volunteer4.update(["hours = 6", "project_id = #{project1.id}"])
+      expect(project1.hours).to eq (18)
+    end
+  end
 end

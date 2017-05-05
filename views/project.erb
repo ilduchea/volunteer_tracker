@@ -1,0 +1,31 @@
+<h2><%= @project.name %></h2>
+
+<div class="row">
+	<div class="col-md-6">
+		<h3>Volunteers Currently on the Project</h3>
+
+		<ul>
+			<% @volunteers.each do |volunteer|%>
+				<li><a href='/volunteer/<%= volunteer.id %>'><%= volunteer.name %></a></li>
+			<% end %>
+		</ul>
+	</div>
+
+	<div class="col-md-6">
+		<h3>Total Hours: <%= @hours %></h3>
+
+		<form action="/update_project/<%= @project.id %>" method="post">
+			<label for="name">Project Name: </label>
+			<input type="text" name="name">
+			<button type="submit" name="update_project">Update Project</button>
+		</form>
+		
+		<form action="/delete_project/<%= @project.id %>" method="post">
+			<button type="submit" name="delete_project">Delete Project</button>
+		</form>
+	</div>
+</div>
+
+
+
+
