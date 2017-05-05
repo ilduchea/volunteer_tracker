@@ -7,4 +7,10 @@ describe(Project) do
 			expect(project_test.name).to eq ('Test Project')
 		end
 	end
+
+	describe('.all') do
+		it('will return all projects in the database, empty at first') do
+			expect(Project.all).to eq ([])
+		end
+	end
 end
