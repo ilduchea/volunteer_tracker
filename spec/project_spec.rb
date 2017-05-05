@@ -41,4 +41,24 @@ describe(Project) do
 			expect(Project.all('ORDER BY id')).to eq ([project1])
 		end
 	end	
+
+	describe('#delete') do
+		it('will remove the project from the database') do
+			project1 = Project.new({:name => 'Test Project'})
+      project1.save
+      project2 = Project.new({:name => 'Another Project'})
+      project2.save
+      project1.delete
+      expect(Project.all('ORDER BY id')).to eq ([project2])
+    end
+  end
+
+  describe('#update') do
+  	it('will update the name of a project') do
+  		project1 = Project.new({:name => 'Test Project'})
+      project1.save
+      project1.update("'New Name'")
+      expect(Project.all('').first.name).to eq ('New Name')
+    end
+  end
 end
