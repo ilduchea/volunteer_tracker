@@ -8,18 +8,28 @@ class Volunteer
 		@id = attributes[:id]
 	end
 
-	def self.all (condition)
-		results = DB.exec("SELECT * FROM volunteers #{condition};")
+	def self.all ()
+		results = DB.exec("SELECT * FROM volunteers;")
+		Volunteer.to_object(results)
+	end
+
+	def self.where (array)
+		results = DB.exec("SELECT * FROM volunteers WHERE #{array[0]} = #{array[1]};")
+		Volunteer.to_object(results)
+	end
+
+	def self.sort_by(key)
+		results = DB.exec("SELECT * FROM volunteers ORDER BY #{key};")
 		Volunteer.to_object(results)
 	end
 
 	def save
-		result = DB.exec("INSERT INTO volunteers (name) VALUES ('#{@name}') RETURNING id;")
+		result = DB.exec("INSERT INTO volunteers (name, hours) VALUES ('#{@name}', #{@hours}) RETURNING id;")
 		@id = result.first['id'].to_i
 	end
 
-	def == (another_voluteer)
-		name.==(another_voluteer.name).&id.==(another_voluteer.id)
+	def == (another_volunteer)
+		name.==(another_volunteer.name).&id.==(another_volunteer.id)
 	end
 
 	def self.find_by_volunteer (condition)
@@ -43,10 +53,8 @@ class Volunteer
   	DB.exec("DELETE FROM volunteers WHERE id = #{self.id};")
   end
 
-  def update (values_array)
-  	values_array.each do |value|
-  		DB.exec("UPDATE volunteers SET #{value} WHERE id = #{self.id};")
-  	end
+  def update (array)
+  	DB.exec("UPDATE volunteers SET #{array[0]} = #{array[1]} WHERE id = #{self.id};")
   end
 
   def add_hours (hours)
@@ -54,7 +62,7 @@ class Volunteer
   	if @hours == nil
   		new_hours = hours
   	else
-  		new_hours = @hours.+(hours)
+  		new_hours = @hours.to_i.+(hours)
   	end
   	@hours = new_hours
   end

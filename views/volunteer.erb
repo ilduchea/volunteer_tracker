@@ -2,7 +2,7 @@
 
 <div class="row">
 	<div class="col-md-6">
-		<h3>Current Project: 
+		<h3>Current Project:
 		<% if @project == nil %>
 			<%= "None" %>
 		<% else %>
@@ -34,11 +34,9 @@
 			</select>
 			<button type="submit" name="update_volunteer_project">Add to Project</button>
 		</form>
-		
+
 		<form action="/delete_volunteer/<%= @volunteer.id %>" method="post">
 			<button type="submit" name="delete_volunteer">Delete Volunteer</button>
 		</form>
 	</div>
 </div>
-
-		
