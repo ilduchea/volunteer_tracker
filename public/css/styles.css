@@ -1,3 +1,62 @@
 body {
 	text-align: center;
+	background-color: #32161F;
+	color: #9AE5E6;
+}
+
+.green-background {
+	background-color: #81A094;
+	color: #32161F;
+}
+
+nav.navbar {
+	margin-bottom: -7px;
+}
+
+.nav li a {
+	color: #32161F;
+	font-weight: 900;
+}
+
+.nav li a:hover {
+	background-color: #775B59;
+	color: #A8F9FF;
+}
+
+.list-links {
+	list-style: none;
+}
+
+.list-links li a {
+	color: #9AE5E6;
+	text-decoration: none;
+	font-size: 1.25em;
+}
+
+.list-links li a:hover {
+	text-decoration: underline;
+}
+
+input, select {
+	background-color: #81A094;
+	color: #32161F;
+}
+
+select {
+	min-width: 100px;
+}
+
+button {
+	background-color: #81A094;
+	color: #32161F;
+	margin-left: 10px;
+}
+
+button:hover {
+	background-color: #775B59;
+	color: #A8F9FF;
+}
+
+form {
+	margin-bottom: 10px;
 }

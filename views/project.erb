@@ -4,7 +4,7 @@
 	<div class="col-md-6">
 		<h3>Volunteers Currently on the Project</h3>
 
-		<ul>
+		<ul class="list-links">
 			<% @volunteers.each do |volunteer|%>
 				<li><a href='/volunteer/<%= volunteer.id %>'><%= volunteer.name %></a></li>
 			<% end %>
@@ -19,13 +19,9 @@
 			<input type="text" name="name">
 			<button type="submit" name="update_project">Update Project</button>
 		</form>
-		
+
 		<form action="/delete_project/<%= @project.id %>" method="post">
 			<button type="submit" name="delete_project">Delete Project</button>
 		</form>
 	</div>
 </div>
-
-
-
-

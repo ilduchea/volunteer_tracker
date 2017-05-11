@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-sm-6">
 		<h2>Projects</h2>
-		<ul>
+		<ul class="list-links">
   		<% @projects.each do |project|%>
     		<li><a href='/project/<%= project.id %>'><%= project.name %></a></li>
   		<% end %>
@@ -9,7 +9,7 @@
 	</div>
 	<div class="col-sm-6">
 		<h2>Volunteers</h2>
-		<ul>
+		<ul class="list-links">
   		<% @volunteers.each do |volunteer|%>
     		<li><a href='/volunteer/<%= volunteer.id %>'><%= volunteer.name %></a></li>
   		<% end %>

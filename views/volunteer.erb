@@ -3,18 +3,18 @@
 <div class="row">
 	<div class="col-md-6">
 		<h3>Current Project:
-		<% if @project == nil %>
-			<%= "None" %>
-		<% else %>
-			<%= @project.name %>
-		<% end %>
+			<% if @project == nil %>
+				<%= "None" %>
+			<% else %>
+				<%= @project.name %>
+			<% end %>
 		</h3>
 		<h3>Project Hours: <%= @volunteer.hours %></h3>
 	</div>
 
 	<div class="col-md-6">
 		<form action="/update_name/<%= @volunteer.id %>" method="post">
-			<label for="name">Volunteer's Name: </label>
+			<label for="name">Update Volunteer's Name: </label>
 			<input type="text" name="name">
 			<button type="submit" name="update_name">Update Name</button>
 		</form>
@@ -29,8 +29,8 @@
 			<label for="project">Project: </label>
 			<select name="project">
 				<% @projects.each do |project|%>
-    			<option value="<%= project.id %>"><%= project.name %></option>
-  			<% end %>
+					<option value="<%= project.id %>"><%= project.name %></option>
+				<% end %>
 			</select>
 			<button type="submit" name="update_volunteer_project">Add to Project</button>
 		</form>
