@@ -29,7 +29,7 @@ This site is designed for a Non Profit organization to track its projects and vo
 * Open localhost:4567 in chrome.
 
 ## Known Bugs
-_Add hours path is not flushed out_
+_Add Hours stays with the volunteer not the project_
 
 ## Support and Contact details
 * Tyler Stephenson
